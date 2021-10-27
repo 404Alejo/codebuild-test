@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    flag: "1"
+
 phases:
   install:
     runtime-versions:
@@ -14,6 +18,12 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
+      - |
+        if [ "$flag" -gt "0" ]; then
+          echo "The conditional works"
+        else
+          echo "The conditional go for the else"
+        fi
 artifacts:
   files:
     - target/messageUtil-1.0.jar
